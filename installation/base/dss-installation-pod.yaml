@@ -6,21 +6,21 @@ spec:
   terminationGracePeriodSeconds: 5
   containers:
     - name: dss
-      image: registry.gitlab.com/tibor_fabian/dku-dss-k8s/dss-host-base:v1.4
+      image: registry.gitlab.com/k8s1173534/dss/dss-host-base:v1.4
       imagePullPolicy: Always
       command: ['/bin/bash']
       args:
         - -ci
         - >-
-            git clone https://$(cat /github-repo/credentials/GH_REPO_USER):$(cat /github-repo/credentials/GH_REPO_TOKEN)@github.com/tibfab/dss-at-k8s.git &&
+            git clone https://sylvain.gavel@gmail.com:$(cat /home/dystopy/Documents/Kubernetes/Certs/tokengithub-docker)@github.com/dystopy/dss-at-k8s.git &&
             dss-at-k8s/installation/installation-steps.sh &&
             sleep infinity
       resources:
         requests:
-          cpu: 2
+          #cpu: 1
           memory: 4Gi
         limits:
-          cpu: 2
+          #cpu: 1
           memory: 4Gi
       env:
         - name: DSS_NODE_TYPE
@@ -53,10 +53,10 @@ spec:
       image: docker:19.03.9-dind
       resources:
         requests:
-          cpu: 1
+          #cpu: 1
           memory: 2Gi
         limits:
-          cpu: 1
+          #cpu: 1
           memory: 2Gi
       env:
         - name: DOCKER_TLS_CERTDIR
