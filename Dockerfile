@@ -3,7 +3,7 @@
 # - DSS dependencies, autostart, UIF activation, conda path
 # - DSS user
 # - K8S config
-FROM ubuntu:18.04
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     sudo \
@@ -34,9 +34,9 @@ USER ${DSS_USER}
 ENV USER ${DSS_USER}
 WORKDIR /home/${DSS_USER}
 
-ARG DOCKER_CLI_PKG='docker-ce-cli_19.03.8~3-0~ubuntu-bionic_amd64.deb'
+ARG DOCKER_CLI_PKG='docker-ce-cli_27.1.2-1~ubuntu.22.04~jammy_amd64.deb '
 
-RUN wget https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_19.03.8~3-0~ubuntu-bionic_amd64.deb \
+RUN wget https://download.docker.com/linux/ubuntu/dists/jammy/pool/stable/amd64/docker-ce-cli_27.1.2-1~ubuntu.22.04~jammy_amd64.deb \
  && sudo dpkg -i ${DOCKER_CLI_PKG} \
  && mkdir .docker \
  && printf "%s\n" \
